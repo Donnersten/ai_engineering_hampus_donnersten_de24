@@ -21,3 +21,20 @@ async def create_book(book_request: Book):
     books.append(new_book)
     return new_book
 
+
+
+@app.put("/books/updatde_book")
+async def update_book(updated_book: Book):
+    for i, book in enumerate(books):
+        if book.id == updated_book.id:
+            books[i] = updated_book
+    return updated_book
+
+
+@app.delete("/books/delite_book/{id}")
+async def delete_book(id: int):
+    for i, book in enumerate(books):
+        if book.id == id:
+            del books[i]
+            break
+
